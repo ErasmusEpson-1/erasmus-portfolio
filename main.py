@@ -56,7 +56,7 @@ Course : 3. Machine learning Onramp.pdf
 Course : 4. Make and Manipulate Matrices.pdf
 Course : 5. MATLAB Onramp.pdf
 Course : 6. Simulink Onramp.pdf 
-Course 8:
+Course 8
 """
         page.update()
 

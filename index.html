@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erasmus Episona S - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            display: flex;
+            gap: 20px;
+            padding: 30px;
+        }
+
+        .sidebar {
+            width: 250px;
+        }
+
+        .sidebar button {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar button:hover {
+            background: #764ba2;
+            transform: translateX(5px);
+        }
+
+        .sidebar button.active {
+            background: #764ba2;
+            box-shadow: 0 5px 15px rgba(118, 75, 162, 0.4);
+        }
+
+        .profile-pic {
+            width: 100%;
+            margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .content-area {
+            flex: 1;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 2em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .section p, .section ul {
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .section ul {
+            margin-left: 20px;
+        }
+
+        .section li {
+            margin-bottom: 8px;
+        }
+
+        .cert-button {
+            display: inline-block;
+            width: calc(50% - 10px);
+            margin: 5px;
+            padding: 15px;
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #667eea;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cert-button:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .cert-buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .github-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .github-grid img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #667eea;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-item {
+            margin-left: 30px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .timeline-item h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .timeline-item ul {
+            margin: 10px 0 0 20px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                display: flex;
+                gap: 10px;
+                overflow-x: auto;
+            }
+
+            .sidebar button {
+                margin-bottom: 0;
+                flex: 1;
+                white-space: nowrap;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .github-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cert-button {
+                width: 100%;
+                margin: 5px 0;
+            }
+        }
+
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Erasmus Episona S</h1>
+            <p>Electrical Engineering Student | JEDS Campus</p>
+        </div>
+
+        <div class="main-content">
+            <div class="sidebar">
+                <button class="nav-btn active" onclick="showSection('home', this)">Home</button>
+                <button class="nav-btn" onclick="showSection('timeline', this)">Project Timeline</button>
+                <button class="nav-btn" onclick="showSection('matlab', this)">MATLAB Hub</button>
+                <button class="nav-btn" onclick="showSection('blog', this)">Technical Blog</button>
+                <button class="nav-btn" onclick="showSection('github', this)">GitHub Evidence</button>
+                <button class="nav-btn" onclick="showSection('video', this)">Project Video</button>
+                
+                <div class="profile-pic">
+                    <img src="profile.jpg" alt="Erasmus Episona S" onerror="this.src='https://via.placeholder.com/200x250?text=Profile'">
+                </div>
+            </div>
+
+            <div class="content-area">
+                <!-- Home Section -->
+                <div id="home" class="section active">
+                    <h2>Welcome to My Portfolio</h2>
+                    <p>Hello! I am Erasmus Episona S, an Electrical Engineering student at JEDS Campus.</p>
+                    <p>This portfolio showcases my engineering, programming, MATLAB and project work throughout my academic journey.</p>
+                    <p><strong>Key Skills:</strong></p>
+                    <ul>
+                        <li>MATLAB Programming & Simulink</li>
+                        <li>Circuit Analysis & Design</li>
+                        <li>Python Development</li>
+                        <li>Version Control (Git/GitHub)</li>
+                        <li>Data Analysis & Visualization</li>
+                        <li>Electrical Engineering Concepts</li>
+                    </ul>
+                </div>
+
+                <!-- Timeline Section -->
+                <div id="timeline" class="section">
+                    <h2>Project Timeline</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <h3>Week 1</h3>
+                            <ul>
+                                <li>Installed Python</li>
+                                <li>Installed Flet</li>
+                                <li>Created portfolio project</li>
+                            </ul>
+                        </div>
+
+                        <div class="timeline-item">
+                            <h3>Week 2</h3>
+                            <ul>
+                                <li>Added homepage</li>
+                                <li>Added profile picture</li>
+                                <li>Added navigation menu</li>
+                            </ul>
+                        </div>
+
+                        <div class="timeline-item">
+                            <h3>Week 3</h3>
+                            <ul>
+                                <li>Developed Project Timeline section</li>
+                                <li>Started portfolio improvements</li>
+                            </ul>
+                        </div>
+
+                        <div class="timeline-item">
+                            <h3>Week 4</h3>
+                            <ul>
+                                <li>Prepared MATLAB Achievement Hub</li>
+                                <li>Prepared Technical Blog</li>
+                                <li>Prepared GitHub Evidence</li>
+                                <li>Deployed portfolio online</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MATLAB Achievement Hub -->
+                <div id="matlab" class="section">
+                    <h2>MATLAB Achievement Hub</h2>
+                    <p>My certifications and accomplishments in MATLAB and related technologies:</p>
+                    <div class="cert-buttons-container">
+                        <a href="#" class="cert-button" onclick="alert('PDF will open in a new window'); return false;">1. Calculations with Vectors and Matrices</a>
+                        <a href="#" class="cert-button" onclick="alert('PDF will open in a new window'); return false;">2. Explore Data with MATLAB Plots</a>
+                        <a href="#" class="cert-button" onclick="alert('PDF will open in a new window'); return false;">3. Machine Learning Onramp</a>
+                        <a href="#" class="cert-button" onclick="alert('PDF will open in a new window'); return false;">4. Make and Manipulate Matrices</a>
+                        <a href="#" class="cert-button" onclick="alert('PDF will open in a new window'); return false;">5. MATLAB Onramp</a>
+                        <a href="#" class="cert-button" onclick="alert('PDF will open in a new window'); return false;">6. Simulink Onramp</a>
+                    </div>
+                    <p style="margin-top: 20px; color: #666; font-size: 0.9em;">💡 Tip: Add your PDF certificates to the same folder as this HTML file and update the links above.</p>
+                </div>
+
+                <!-- Technical Blog -->
+                <div id="blog" class="section">
+                    <h2>Technical Blog</h2>
+                    <p>Topics and insights from my Electrical Engineering journey:</p>
+                    <ul>
+                        <li><strong>MATLAB Basics</strong> - Getting started with matrix operations and scripting</li>
+                        <li><strong>Circuit Analysis</strong> - Understanding fundamental circuit concepts</li>
+                        <li><strong>Superposition Theorem</strong> - Practical applications in circuit design</li>
+                        <li><strong>MOSFET Fundamentals</strong> - Metal-Oxide-Semiconductor transistor principles</li>
+                        <li><strong>Electrical Engineering Concepts</strong> - Core theories and applications</li>
+                    </ul>
+                    <p style="margin-top: 20px; color: #666;">More detailed articles coming soon...</p>
+                </div>
+
+                <!-- GitHub Evidence -->
+                <div id="github" class="section">
+                    <h2>GitHub Evidence</h2>
+                    <p>My GitHub contributions and commits showcasing version control and collaboration:</p>
+                    <div class="github-grid">
+                        <img src="IMG1.jpg" alt="GitHub Contributions 1" onerror="this.src='https://via.placeholder.com/400?text=GitHub+Screenshot+1'">
+                        <img src="IMG2.jpg" alt="GitHub Contributions 2" onerror="this.src='https://via.placeholder.com/400?text=GitHub+Screenshot+2'">
+                    </div>
+                    <div class="video-section">
+                        <h3>Version Control Highlights:</h3>
+                        <ul>
+                            <li>✓ Created portfolio repository</li>
+                            <li>✓ Made multiple commits with clear messages</li>
+                            <li>✓ Uploaded Electrical Engineering portfolio project</li>
+                            <li>✓ Tracked version control using Git</li>
+                            <li>✓ Collaborated using GitHub best practices</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Project Video -->
+                <div id="video" class="section">
+                    <h2>Project Contribution Video</h2>
+                    <div class="video-section">
+                        <h3>My Contributions:</h3>
+                        <ul>
+                            <li>✓ Created portfolio homepage</li>
+                            <li>✓ Added profile picture and branding</li>
+                            <li>✓ Built MATLAB Achievement Hub</li>
+                            <li>✓ Developed Project Timeline section</li>
+                            <li>✓ Created Technical Blog</li>
+                            <li>✓ Compiled GitHub Evidence</li>
+                            <li>✓ Deployed portfolio online</li>
+                        </ul>
+                        <p style="margin-top: 20px;">This portfolio demonstrates my technical skills, project management abilities, and commitment to professional development in Electrical Engineering.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2026 Erasmus Episona S | Electrical Engineering Portfolio | <a href="https://github.com" target="_blank" style="color: #667eea;">GitHub</a></p>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId, buttonElement) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.remove('active'));
+
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Add active class to clicked button
+            buttonElement.classList.add('active');
+        }
+    </script>
+</body>
+</html>
